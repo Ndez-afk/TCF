@@ -1,79 +1,239 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
+<html lang="en"><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>C-01 Support</title>
+    <title>Download Executors</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&amp;display=swap" rel="stylesheet">
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            color: #333;
-            text-align: center;
+            font-family: 'Roboto', sans-serif;
+            background-image: url('city.gif'); /* Set the background image */
+            background-size: cover; /* Cover the entire background */
+            background-position: center; /* Center the background image */
+            color: #ffffff;
+            margin: 0;
             padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start; /* Align content to the top for scrolling */
+            flex-direction: column;
+            min-height: 100vh; /* Ensure full height */
+            overflow-y: auto; /* Enable scrolling */
         }
 
         h1 {
-            color: #2c3e50;
+            margin-bottom: 20px;
+            font-size: 2.5em;
+            color: #ff4081; /* Neon pink */
+            text-shadow: 0 0 10px #ff4081, 0 0 20px #ff4081; /* Glowing effect */
         }
 
-        .faq-container {
-            max-width: 800px;
-            margin: 0 auto;
-            text-align: left;
-            background-color: #fff;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            padding: 20px;
+        .nav-bar {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            padding: 10px 0;
+            background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background */
+            border-bottom: 2px solid #03a9f4; /* Neon cyan border */
+            position: fixed;
+            top: 0;
+            z-index: 2;
         }
 
-        .faq-item {
-            margin-bottom: 15px;
-        }
-
-        .faq-item h3 {
-            font-size: 18px;
-            color: #3498db;
-        }
-
-        .faq-item p {
-            font-size: 16px;
-            color: #555;
-        }
-
-        .support-ticket {
-            display: inline-block;
-            margin-top: 20px;
-            padding: 10px 20px;
-            background-color: #3498db;
-            color: #fff;
+        .nav-link {
+            color: #03a9f4; /* Neon cyan */
+            font-size: 1.2em;
             text-decoration: none;
-            border-radius: 5px;
-            transition: background-color 0.3s ease;
+            margin: 0 15px;
+            transition: color 0.3s, text-shadow 0.3s;
+            text-shadow: 0 0 5px #03a9f4, 0 0 10px #03a9f4;
         }
 
-        .support-ticket:hover {
-            background-color: #2980b9;
+        .nav-link:hover {
+            color: #ff4081; /* Neon pink on hover */
+            text-shadow: 0 0 10px #ff4081, 0 0 20px #ff4081;
+        }
+
+        .container {
+            display: flex; /* Set display to flex for the containers */
+            flex-wrap: wrap; /* Allow wrapping to new lines */
+            justify-content: center;
+            gap: 20px;
+            max-width: 1200px;
+            z-index: 1; /* Ensure container is above background */
+            position: relative; /* Positioning context */
+            padding-top: 100px; /* Offset for fixed nav bar */
+            text-align: center; /* Center content */
+            margin: 0 auto; /* Center the container */
+        }
+
+        .executor-box {
+            background-color: rgba(30, 30, 30, 0.8); /* Semi-transparent background */
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            width: 250px;
+            max-width: 100%; /* Ensure it does not overflow */
+            transition: transform 0.3s, background-color 0.3s, box-shadow 0.3s;
+            border: 2px solid #03a9f4; /* Neon cyan border */
+        }
+
+        .executor-box:hover {
+            transform: translateY(-5px);
+            background-color: rgba(50, 50, 50, 0.9); /* Darken on hover */
+            box-shadow: 0 0 20px #03a9f4, 0 0 30px #03a9f4; /* Glow effect on hover */
+        }
+
+        .executor-title {
+            font-size: 1.5em;
+            margin: 10px 0;
+            color: #03a9f4; /* Neon cyan */
+            text-shadow: 0 0 5px #03a9f4, 0 0 10px #03a9f4;
+        }
+
+        .executor-info {
+            font-size: 0.9em;
+            margin-bottom: 20px;
+            color: #e0e0e0; /* Info text color */
+        }
+
+        .download-btn {
+            background-color: #8000ff; /* Neon orange */
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s, box-shadow 0.3s;
+            font-weight: bold;
+            text-shadow: 0 0 5px #8000ff, 0 0 15px #ff5722;
+            box-shadow: 0 0 15px #8000ff; /* Glowing effect */
+        }
+
+        .download-btn:hover {
+            background-color: #a349a4; /* Brighter neon orange */
+            box-shadow: 0 0 25px #a349a4; /* Stronger glow on hover */
+        }
+
+        .script-box {
+            background-color: rgba(30, 30, 30, 0.8); /* Semi-transparent background */
+            border-radius: 10px;
+            padding: 20px;
+            width: 80%;
+            text-align: center;
+            font-size: 1.1em;
+            border: 2px solid #03a9f4;
+            margin: 20px auto; /* Center the script box */
+        }
+
+        .copy-btn {
+            background-color: #ff4081; /* Neon pink */
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        .copy-btn:hover {
+            background-color: #e91e63; /* Darker pink on hover */
         }
     </style>
 </head>
 <body>
-    <h1>C-01 Support</h1>
-    <div class="faq-container">
-        <div class="faq-item">
-            <h3>How do I set up C-01?</h3>
-            <p>To set up C-01, please follow the instructions provided in the setup guide. Make sure you have all the prerequisites installed.</p>
+    <div class="nav-bar">
+        <a href="javascript:void(0)" class="nav-link" onclick="showPage('executors')">Executors</a>
+        <a href="javascript:void(0)" class="nav-link" onclick="showPage('scripts')">Scripts</a>
+        <a href="javascript:void(0)" class="nav-link" onclick="showPage('rat-executors')">Recommended Executors!</a>
+    </div>
+
+    <h1></h1>
+
+    <!-- Executors Section -->
+    <div id="executors" class="container" style="display: flex;">
+        <div class="executor-box">
+            <div class="executor-title">WarpSploit</div>
+            <div class="executor-info">A unique new Executor with frequent updates!</div>
+            <button class="download-btn" onclick="location.href='WarpSploit.zip'">Download</button>
         </div>
-        <div class="faq-item">
-            <h3>Why is C-01 not connecting?</h3>
-            <p>If C-01 is not connecting, please check your internet connection, firewall settings, and ensure all configurations are correct.</p>
+        <div class="executor-box">
+            <div class="executor-title">Solara</div>
+            <div class="executor-info">Basic and fast but low unc and glitches updates very frequently.</div>
+            <button class="download-btn" onclick="location.href='Solara.exe'">Download</button>
         </div>
-        <div class="faq-item">
-            <h3>How can I update C-01 to the latest version?</h3>
-            <p>Updates are available on our official website. Please download and follow the update instructions to ensure a smooth upgrade.</p>
+        <div class="executor-box">
+            <div class="executor-title">Zorara</div>
+            <div class="executor-info">Fast new executor with major improvement updates.</div>
+            <button class="download-btn" onclick="location.href='Zorara.zip'">Download</button>
+        </div>
+        <div class="executor-box">
+            <div class="executor-title">Xeno</div>
+            <div class="executor-info">Very high unc but no HWID scripts.</div>
+            <button class="download-btn" onclick="location.href='xn.zip'">Download</button>
+        </div>
+        <div class="executor-box">
+            <div class="executor-title">MiraXSploit</div>
+            <div class="executor-info">Recommended high unc script hub</div>
+            <button class="download-btn" onclick="location.href='Mira.zip'">Download</button>
+        </div>
+		  <div class="executor-box">
+            <div class="executor-title">BLXZE</div>
+            <div class="executor-info">New fast and major updates</div>
+            <button class="download-btn" onclick="location.href='blxze.zip'">Download</button>
         </div>
     </div>
 
-    <a href="https://discord.com/invite/your-discord-link" class="support-ticket" target="_blank">Open a Support Ticket on Discord</a>
-</body>
-</html>
+    <!-- Scripts Section -->
+    <div id="scripts" class="container" style="display: none;">
+        <div class="script-box">
+            <div class="executor-title">Airflow Emergency Hamburg</div>
+            <pre>loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/255ac567ced3dcb9e69aa7e44c423f19.lua"))()
+            join the Airflow discord for key system https://discord.gg/emergencyhamburg</pre>
+            <button class="copy-btn" onclick="copyToClipboard('loadstring(game:HttpGet(" https:="" api.luarmor.net="" files="" v3="" loaders="" 255ac567ced3dcb9e69aa7e44c423f19.lua"))()')"="">Copy</button>
+        </div>
+        <div class="script-box">
+            <div class="executor-title">Your Script here??</div>
+            <pre>print("test for your script")</pre>
+            <button class="copy-btn" onclick="copyToClipboard('print(" test="" for="" your="" script")')"="">Copy</button>
+        </div>
+    </div>
+
+    <!-- Recommended Executors Section -->
+    <div id="rat-executors" class="container" style="display: none;">
+        <div class="executor-box">
+            <div class="executor-title">Premium Executor 1</div>
+            <div class="executor-info">Description about the executor features and recommendations.</div>
+            <button class="download-btn" onclick="location.href='#'">Download</button>
+        </div>
+        <div class="executor-box">
+            <div class="executor-title">Premium Executor 2</div>
+            <div class="executor-info">Another recommended premium executor with more details.</div>
+            <button class="download-btn" onclick="location.href='#'">Download</button>
+        </div>
+    </div>
+
+    <script>
+        function showPage(page) {
+            const pages = document.querySelectorAll('.container');
+            pages.forEach(p => p.style.display = 'none');
+            document.getElementById(page).style.display = 'flex';
+        }
+
+        function copyToClipboard(text) {
+            const tempInput = document.createElement("textarea");
+            tempInput.value = text;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand("copy");
+            document.body.removeChild(tempInput);
+            alert("Script copied to clipboard!");
+        }
+
+        // Default Page
+        showPage('executors');
+    </script>
+
+
+</body></html>
