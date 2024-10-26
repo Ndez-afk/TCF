@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Key Repository</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            background-color: #fff;
+            margin: 5px 0;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+        li:hover {
+            background-color: #eaeaea;
+        }
+        button {
+            padding: 10px 15px;
+            margin-top: 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <h1>Valid Keys</h1>
+    <ul id="keyList">
+       
+        
+        <li>C-01-L70CM38</li>
+
+    </ul>
+    
+    <button id="fetchKey">Fetch Random Key</button>
+    <p id="selectedKey"></p>
+
+    <script>
+        document.getElementById('fetchKey').addEventListener('click', () => {
+            const keys = Array.from(document.querySelectorAll('#keyList li')).map(li => li.textContent);
+            if (keys.length > 0) {
+                const randomKey = keys[Math.floor(Math.random() * keys.length)];
+                document.getElementById('selectedKey').textContent = `Random Key: ${randomKey}`;
+            }
+        });
+    </script>
+</body>
+</html>
