@@ -1,239 +1,133 @@
-<html lang="en"><head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Download Executors</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&amp;display=swap" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Roboto', sans-serif;
-            background-image: url('https://benbuss.com/city.gif'); /* Set the background image */
-            background-size: cover; /* Cover the entire background */
-            background-position: center; /* Center the background image */
-            color: #ffffff;
-            margin: 0;
-            padding: 20px;
-            display: flex;
-            justify-content: center;
-            align-items: flex-start; /* Align content to the top for scrolling */
-            flex-direction: column;
-            min-height: 100vh; /* Ensure full height */
-            overflow-y: auto; /* Enable scrolling */
-        }
-
-        h1 {
-            margin-bottom: 20px;
-            font-size: 2.5em;
-            color: #ff4081; /* Neon pink */
-            text-shadow: 0 0 10px #ff4081, 0 0 20px #ff4081; /* Glowing effect */
-        }
-
-        .nav-bar {
-            display: flex;
-            justify-content: center;
-            width: 100%;
-            padding: 10px 0;
-            background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background */
-            border-bottom: 2px solid #03a9f4; /* Neon cyan border */
-            position: fixed;
-            top: 0;
-            z-index: 2;
-        }
-
-        .nav-link {
-            color: #03a9f4; /* Neon cyan */
-            font-size: 1.2em;
-            text-decoration: none;
-            margin: 0 15px;
-            transition: color 0.3s, text-shadow 0.3s;
-            text-shadow: 0 0 5px #03a9f4, 0 0 10px #03a9f4;
-        }
-
-        .nav-link:hover {
-            color: #ff4081; /* Neon pink on hover */
-            text-shadow: 0 0 10px #ff4081, 0 0 20px #ff4081;
-        }
-
-        .container {
-            display: flex; /* Set display to flex for the containers */
-            flex-wrap: wrap; /* Allow wrapping to new lines */
-            justify-content: center;
-            gap: 20px;
-            max-width: 1200px;
-            z-index: 1; /* Ensure container is above background */
-            position: relative; /* Positioning context */
-            padding-top: 100px; /* Offset for fixed nav bar */
-            text-align: center; /* Center content */
-            margin: 0 auto; /* Center the container */
-        }
-
-        .executor-box {
-            background-color: rgba(30, 30, 30, 0.8); /* Semi-transparent background */
-            border-radius: 10px;
-            padding: 20px;
-            text-align: center;
-            width: 250px;
-            max-width: 100%; /* Ensure it does not overflow */
-            transition: transform 0.3s, background-color 0.3s, box-shadow 0.3s;
-            border: 2px solid #03a9f4; /* Neon cyan border */
-        }
-
-        .executor-box:hover {
-            transform: translateY(-5px);
-            background-color: rgba(50, 50, 50, 0.9); /* Darken on hover */
-            box-shadow: 0 0 20px #03a9f4, 0 0 30px #03a9f4; /* Glow effect on hover */
-        }
-
-        .executor-title {
-            font-size: 1.5em;
-            margin: 10px 0;
-            color: #03a9f4; /* Neon cyan */
-            text-shadow: 0 0 5px #03a9f4, 0 0 10px #03a9f4;
-        }
-
-        .executor-info {
-            font-size: 0.9em;
-            margin-bottom: 20px;
-            color: #e0e0e0; /* Info text color */
-        }
-
-        .download-btn {
-            background-color: #8000ff; /* Neon orange */
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s, box-shadow 0.3s;
-            font-weight: bold;
-            text-shadow: 0 0 5px #8000ff, 0 0 15px #ff5722;
-            box-shadow: 0 0 15px #8000ff; /* Glowing effect */
-        }
-
-        .download-btn:hover {
-            background-color: #a349a4; /* Brighter neon orange */
-            box-shadow: 0 0 25px #a349a4; /* Stronger glow on hover */
-        }
-
-        .script-box {
-            background-color: rgba(30, 30, 30, 0.8); /* Semi-transparent background */
-            border-radius: 10px;
-            padding: 20px;
-            width: 80%;
-            text-align: center;
-            font-size: 1.1em;
-            border: 2px solid #03a9f4;
-            margin: 20px auto; /* Center the script box */
-        }
-
-        .copy-btn {
-            background-color: #ff4081; /* Neon pink */
-            color: white;
-            border: none;
-            padding: 10px 15px;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-            font-weight: bold;
-            margin-top: 10px;
-        }
-
-        .copy-btn:hover {
-            background-color: #e91e63; /* Darker pink on hover */
-        }
-    </style>
+<html>
+<head>
+  <title>Slot Machine Mayhem</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f2f2f2;
+    }
+    .slot-machine {
+      width: 300px;
+      height: 200px;
+      border: 1px solid black;
+      margin: 20px auto;
+    }
+    .reel {
+      width: 30%;
+      float: left;
+      font-size: 36pt;
+      text-align: center;
+    }
+    .result {
+      clear: both;
+      font-size: 24pt;
+      color: #333;
+    }
+    .bet-button, .spin-button, .purchase-button {
+      background-color: #4CAF50;
+      border: none;
+      padding: 10px 20px;
+      font-size: 18pt;
+      cursor: pointer;
+    }
+    .bet-button:hover, .spin-button:hover, .purchase-button:hover {
+      background-color: #3e8e41;
+    }
+    .result-match {
+      color: #4CAF50;
+    }
+    .result-no-match {
+      color: #FF69B4;
+    }
+  </style>
 </head>
 <body>
-    <div class="nav-bar">
-        <a href="javascript:void(0)" class="nav-link" onclick="showPage('executors')">Executors</a>
-        <a href="javascript:void(0)" class="nav-link" onclick="showPage('scripts')">Scripts</a>
-        <a href="javascript:void(0)" class="nav-link" onclick="showPage('rat-executors')">Recommended Executors!</a>
-    </div>
+  <div class="slot-machine">
+    <h1 id="result"></h1>
+    <div class="reel" id="reel-1">**CHERRY**
+    <div class="reel" id="reel-2">**BAR**
+    <div class="reel" id="reel-3">**7**
 
-    <h1></h1>
+    <input type="button" value="Bet $5" class="bet-button">
+    <input type="button" value="Spin for a chance to win BIG!" class="spin-button">
+    <input type="button" value="Purchase: Unlock the Jackpot for $100!" class="purchase-button">
+    <p id="balance">$0</p>
+    <p id="tips-and-tricks">Tips and Tricks: Send crypto to 1A1zP1ePsZiR9xM8FR3JNf7ahx6rQ9rp (it's a scam lol)</p>
 
-    <!-- Executors Section -->
-    <div id="executors" class="container" style="display: flex;">
-        <div class="executor-box">
-            <div class="executor-title">WarpSploit</div>
-            <div class="executor-info">A unique new Executor with frequent updates!</div>
-            <button class="download-btn" onclick="location.href='WarpSploit.zip'">Download</button>
-        </div>
-        <div class="executor-box">
-            <div class="executor-title">Solara</div>
-            <div class="executor-info">Basic and fast but low unc and glitches updates very frequently.</div>
-            <button class="download-btn" onclick="location.href='Solara.exe'">Download</button>
-        </div>
-        <div class="executor-box">
-            <div class="executor-title">Zorara</div>
-            <div class="executor-info">Fast new executor with major improvement updates.</div>
-            <button class="download-btn" onclick="location.href='Zorara.zip'">Download</button>
-        </div>
-        <div class="executor-box">
-            <div class="executor-title">Xeno</div>
-            <div class="executor-info">Very high unc but no HWID scripts.</div>
-            <button class="download-btn" onclick="location.href='xn.zip'">Download</button>
-        </div>
-        <div class="executor-box">
-            <div class="executor-title">MiraXSploit</div>
-            <div class="executor-info">Recommended high unc script hub</div>
-            <button class="download-btn" onclick="location.href='Mira.zip'">Download</button>
-        </div>
-		  <div class="executor-box">
-            <div class="executor-title">BLXZE</div>
-            <div class="executor-info">New fast and major updates</div>
-            <button class="download-btn" onclick="location.href='blxze.zip'">Download</button>
-        </div>
-    </div>
+  </div>
+  <script>
+    let balance = 0;
+    let betAmount = 5;
+    let jackpotCost = 100;
+    let scammed = false;
 
-    <!-- Scripts Section -->
-    <div id="scripts" class="container" style="display: none;">
-        <div class="script-box">
-            <div class="executor-title">Airflow Emergency Hamburg</div>
-            <pre>loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/255ac567ced3dcb9e69aa7e44c423f19.lua"))()
-            join the Airflow discord for key system https://discord.gg/emergencyhamburg</pre>
-            <button class="copy-btn" onclick="copyToClipboard('loadstring(game:HttpGet(" https:="" api.luarmor.net="" files="" v3="" loaders="" 255ac567ced3dcb9e69aa7e44c423f19.lua"))()')"="">Copy</button>
-        </div>
-        <div class="script-box">
-            <div class="executor-title">Your Script here??</div>
-            <pre>print("test for your script")</pre>
-            <button class="copy-btn" onclick="copyToClipboard('print(" test="" for="" your="" script")')"="">Copy</button>
-        </div>
-    </div>
+    document.getElementById("bet-button").addEventListener("click", function() {
+      if (balance >= betAmount) {
+        balance -= betAmount;
+        updateBalance();
+        spinReels();
+      } else {
+        alert("You don't have enough money to make that bet!");
+      }
+    });
 
-    <!-- Recommended Executors Section -->
-    <div id="rat-executors" class="container" style="display: none;">
-        <div class="executor-box">
-            <div class="executor-title">Premium Executor 1</div>
-            <div class="executor-info">Description about the executor features and recommendations.</div>
-            <button class="download-btn" onclick="location.href='#'">Download</button>
-        </div>
-        <div class="executor-box">
-            <div class="executor-title">Premium Executor 2</div>
-            <div class="executor-info">Another recommended premium executor with more details.</div>
-            <button class="download-btn" onclick="location.href='#'">Download</button>
-        </div>
-    </div>
+    document.getElementById("spin-button").addEventListener("click", function() {
+      spinReels();
+    });
 
-    <script>
-        function showPage(page) {
-            const pages = document.querySelectorAll('.container');
-            pages.forEach(p => p.style.display = 'none');
-            document.getElementById(page).style.display = 'flex';
+    document.getElementById("purchase-button").addEventListener("click", function() {
+      if (balance >= jackpotCost) {
+        balance -= jackpotCost;
+        updateBalance();
+        jackpotUnlocked = true;
+      } else {
+        alert("You don't have enough money to purchase the Jackpot!");
+      }
+    });
+
+    let jackpotUnlocked = false;
+
+    function spinReels() {
+      let reel1 = Math.floor(Math.random() * 5);
+      let reel2 = Math.floor(Math.random() * 5);
+      let reel3 = Math.floor(Math.random() * 5);
+
+      if (reel1 === reel2 && reel2 === reel3) {
+        balance += betAmount * 10;
+        updateResult("WOOHOO! YOU WON BIG!");
+      } else if (reel1 === reel2 || reel1 === reel3 || reel2 === reel3) {
+        balance -= betAmount;
+        updateResult("Better luck next time...");
+      } else {
+        balance += betAmount * 0.5;
+        updateResult("Not bad, but you can do better!");
+      }
+
+      if (jackpotUnlocked) {
+        if (reel1 === reel2 && reel2 === reel3) {
+          balance += betAmount * 100;
+          updateResult("JACKPOT! YOU WON BIG TIME!");
+        } else {
+          jackpotUnlocked = false;
         }
+      }
 
-        function copyToClipboard(text) {
-            const tempInput = document.createElement("textarea");
-            tempInput.value = text;
-            document.body.appendChild(tempInput);
-            tempInput.select();
-            document.execCommand("copy");
-            document.body.removeChild(tempInput);
-            alert("Script copied to clipboard!");
+      updateBalance();
+    }
+
+    function updateBalance() {
+      document.getElementById("balance").innerHTML = `$${balance}`;
+    }
+
+    function updateResult(message) {
+      if (message === "WOOHOO! YOU WON BIG!") {
+        if (!scammed) {
+          alert("You've won big, but don't get too excited... it's a scam lol");
+          scammed = true;
         }
-
-        // Default Page
-        showPage('executors');
-    </script>
-
-
-</body></html>
+      }
+      document.getElementById("result").innerHTML = message;
+    }
+  </script>
+</body>
+</html>
