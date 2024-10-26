@@ -1,133 +1,121 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <title>Slot Machine Mayhem</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f2f2f2;
-    }
-    .slot-machine {
-      width: 300px;
-      height: 200px;
-      border: 1px solid black;
-      margin: 20px auto;
-    }
-    .reel {
-      width: 30%;
-      float: left;
-      font-size: 36pt;
-      text-align: center;
-    }
-    .result {
-      clear: both;
-      font-size: 24pt;
-      color: #333;
-    }
-    .bet-button, .spin-button, .purchase-button {
-      background-color: #4CAF50;
-      border: none;
-      padding: 10px 20px;
-      font-size: 18pt;
-      cursor: pointer;
-    }
-    .bet-button:hover, .spin-button:hover, .purchase-button:hover {
-      background-color: #3e8e41;
-    }
-    .result-match {
-      color: #4CAF50;
-    }
-    .result-no-match {
-      color: #FF69B4;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animated Slot Machine Game</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #222;
+            color: #fff;
+        }
+        .game-container {
+            width: 300px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0,0,0,0.3);
+            padding: 20px;
+            background-color: #444;
+            color: #fff;
+        }
+    </style>
 </head>
 <body>
-  <div class="slot-machine">
-    <h1 id="result"></h1>
-    <div class="reel" id="reel-1">**CHERRY**
-    <div class="reel" id="reel-2">**BAR**
-    <div class="reel" id="reel-3">**7**
+    <div class="game-container">
+        <h1>Animated Slot Machine</h1>
+        <div class="slot-machine">
+            <div class="slot" id="slot1"><div></div></div>
+            <div class="slot" id="slot2"><div></div></div>
+            <div class="slot" id="slot3"><div></div></div>
+        </div>
+        <div class="points">Points: <span id="points">100</span></div>
+        <button id="spin-btn">Spin</button>
+        <div class="upgrade-cost">Upgrade Cost: <span id="upgrade-cost">50</span> Points</div>
+        <button id="upgrade-btn">Upgrade (x2 Winnings)</button>
+    </div>
 
-    <input type="button" value="Bet $5" class="bet-button">
-    <input type="button" value="Spin for a chance to win BIG!" class="spin-button">
-    <input type="button" value="Purchase: Unlock the Jackpot for $100!" class="purchase-button">
-    <p id="balance">$0</p>
-    <p id="tips-and-tricks">Tips and Tricks: Send crypto to 1A1zP1ePsZiR9xM8FR3JNf7ahx6rQ9rp (it's a scam lol)</p>
+    <script>
+        let points = 100;
+        let multiplier = 1;
+        const slotSymbols = ["🍒", "🍋", "🍇", "🍉", "⭐", "🍊"];
+        const spinBtn = document.getElementById("spin-btn");
+        const upgradeBtn = document.getElementById("upgrade-btn");
+        const pointsDisplay = document.getElementById("points");
+        const upgradeCostDisplay = document.getElementById("upgrade-cost");
 
-  </div>
-  <script>
-    let balance = 0;
-    let betAmount = 5;
-    let jackpotCost = 100;
-    let scammed = false;
-
-    document.getElementById("bet-button").addEventListener("click", function() {
-      if (balance >= betAmount) {
-        balance -= betAmount;
-        updateBalance();
-        spinReels();
-      } else {
-        alert("You don't have enough money to make that bet!");
-      }
-    });
-
-    document.getElementById("spin-button").addEventListener("click", function() {
-      spinReels();
-    });
-
-    document.getElementById("purchase-button").addEventListener("click", function() {
-      if (balance >= jackpotCost) {
-        balance -= jackpotCost;
-        updateBalance();
-        jackpotUnlocked = true;
-      } else {
-        alert("You don't have enough money to purchase the Jackpot!");
-      }
-    });
-
-    let jackpotUnlocked = false;
-
-    function spinReels() {
-      let reel1 = Math.floor(Math.random() * 5);
-      let reel2 = Math.floor(Math.random() * 5);
-      let reel3 = Math.floor(Math.random() * 5);
-
-      if (reel1 === reel2 && reel2 === reel3) {
-        balance += betAmount * 10;
-        updateResult("WOOHOO! YOU WON BIG!");
-      } else if (reel1 === reel2 || reel1 === reel3 || reel2 === reel3) {
-        balance -= betAmount;
-        updateResult("Better luck next time...");
-      } else {
-        balance += betAmount * 0.5;
-        updateResult("Not bad, but you can do better!");
-      }
-
-      if (jackpotUnlocked) {
-        if (reel1 === reel2 && reel2 === reel3) {
-          balance += betAmount * 100;
-          updateResult("JACKPOT! YOU WON BIG TIME!");
-        } else {
-          jackpotUnlocked = false;
+        function getRandomSymbol() {
+            return slotSymbols[Math.floor(Math.random() * slotSymbols.length)];
         }
-      }
 
-      updateBalance();
-    }
-
-    function updateBalance() {
-      document.getElementById("balance").innerHTML = `$${balance}`;
-    }
-
-    function updateResult(message) {
-      if (message === "WOOHOO! YOU WON BIG!") {
-        if (!scammed) {
-          alert("You've won big, but don't get too excited... it's a scam lol");
-          scammed = true;
+        function updatePoints(amount) {
+            points += amount;
+            pointsDisplay.textContent = points;
         }
-      }
-      document.getElementById("result").innerHTML = message;
-    }
-  </script>
+
+        function animateSlots(slot, finalSymbol) {
+            slot.innerHTML = ''; // Clear the current symbol
+            let div = document.createElement("div");
+            slot.appendChild(div);
+
+            let spins = 10; // Number of spins
+            let spinInterval = setInterval(() => {
+                div.textContent = getRandomSymbol();
+            }, 100);
+
+            setTimeout(() => {
+                clearInterval(spinInterval);
+                div.textContent = finalSymbol;
+            }, spins * 100);
+        }
+
+        function spinSlots() {
+            spinBtn.disabled = true;
+
+            const finalSymbols = [getRandomSymbol(), getRandomSymbol(), getRandomSymbol()];
+            animateSlots(document.getElementById("slot1"), finalSymbols[0]);
+            animateSlots(document.getElementById("slot2"), finalSymbols[1]);
+            animateSlots(document.getElementById("slot3"), finalSymbols[2]);
+
+            setTimeout(() => {
+                if (finalSymbols[0] === finalSymbols[1] && finalSymbols[1] === finalSymbols[2]) {
+                    const winAmount = 20 * multiplier;
+                    alert(`You won ${winAmount} points!`);
+                    updatePoints(winAmount);
+                } else {
+                    alert("Try again!");
+                    updatePoints(-10);
+                }
+                spinBtn.disabled = false;
+            }, 1100);
+        }
+
+        function upgradeMultiplier() {
+            const upgradeCost = 50 * multiplier;
+            if (points >= upgradeCost) {
+                points -= upgradeCost;
+                multiplier *= 2;
+                updatePoints(0); // Update display
+                upgradeCostDisplay.textContent = `Upgrade Cost: ${upgradeCost * multiplier} Points`;
+                alert(`Upgrade successful! Multiplier is now x${multiplier}.`);
+            } else {
+                alert("Not enough points to upgrade.");
+            }
+
+            checkButtonStates();
+        }
+
+        function checkButtonStates() {
+            spinBtn.disabled = points < 10;
+            upgradeBtn.disabled = points < multiplier * 50;
+        }
+
+        spinBtn.addEventListener("click", spinSlots);
+        upgradeBtn.addEventListener("click", upgradeMultiplier);
+        checkButtonStates();
+    </script>
 </body>
 </html>
